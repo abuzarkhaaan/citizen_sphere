@@ -4,13 +4,12 @@ import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_green_button.dart';
 import 'package:citizen_sphere2/view/Home%20Screen/home_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class ThankYouScreen extends StatelessWidget {
-  const ThankYouScreen({super.key});
+class ComplaintSuccessfulScreen extends StatelessWidget {
+  const ComplaintSuccessfulScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +63,7 @@ class ThankYouScreen extends StatelessWidget {
                             fontSize: 28.sp,
                           ),
                           quickSandMediumText(
-                            text: 'Your account has been verified',
+                            text: 'Your complaint has been submitted',
                             fontSize: 16.sp,
                             color: AdaptiveTheme.of(context).mode.isLight
                                 ? blackColor
@@ -75,7 +74,8 @@ class ThankYouScreen extends StatelessWidget {
                             onTap: () {
                               Get.offAll(const HomeScreen());
                             },
-                            child: const CustomGreenButton(label: 'Continue'),
+                            child:
+                                const CustomGreenButton(label: 'Return Home'),
                           ),
                         ],
                       ),

@@ -1,6 +1,9 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:citizen_sphere2/view/Complaints%20Screen/complaint_screen.dart';
 import 'package:citizen_sphere2/view/Its%20Me%20Screen/its_me_screen.dart';
 import 'package:citizen_sphere2/view/Pay%20Electricity%20Bill/pay_electricity_bill_invoice_number_screen.dart';
 import 'package:citizen_sphere2/view/Pay%20Water%20Bill/pay_water_bill_invoice_no_screen.dart';
+import 'package:citizen_sphere2/view/Records%20Screen/records_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -45,8 +48,10 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     10.0), // Adjust the value for more or less rounding
                 gradient: LinearGradient(
                   colors: [
-                    whiteColor,
-                    whiteColor,
+                    Theme.of(context).colorScheme.primaryContainer,
+                    Theme.of(context).colorScheme.primaryContainer,
+                    // whiteColor,
+                    // whiteColor,
                     greenColor.withOpacity(.8),
                     greenColor.withOpacity(.9),
                     greenColor,
@@ -70,10 +75,16 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     text: 'Balance',
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w600,
+                    color: AdaptiveTheme.of(context).mode.isLight
+                        ? blackColor
+                        : whiteColor,
                   ),
                   quickSandMediumText(
                     text: 'Rs. 5000',
                     fontSize: 48.sp,
+                    color: AdaptiveTheme.of(context).mode.isLight
+                        ? blackColor
+                        : whiteColor,
                   ),
                   SizedBox(height: 44.h),
                   Row(
@@ -91,14 +102,19 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15.sp),
                             border: Border.all(color: tealColor),
-                            color: whiteColor,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
                           ),
                           child: Center(
                             child: quickSandMediumText(
                               text: 'SEND',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
-                              color: greenColor,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? greenColor
+                                  : tealColor,
+                              // color: ,
                             ),
                           ),
                         ),
@@ -113,6 +129,9 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
               text: 'DIGITAL ID',
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
+              color: AdaptiveTheme.of(context).mode.isLight
+                  ? blackColor
+                  : whiteColor,
             ),
             SizedBox(height: 11.h),
             GestureDetector(
@@ -128,22 +147,12 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
             ),
             SizedBox(height: 28.h),
             quickSandMediumText(
-              text: 'FEDERAL SERVICES',
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w600,
-            ),
-            SizedBox(height: 11.h),
-            OptionsCardAndDescription(
-              icon: federalServicesIcon,
-              description: 'Federal Services',
-              width: 38.w,
-              height: 60.h,
-            ),
-            SizedBox(height: 28.h),
-            quickSandMediumText(
               text: 'BILL PAYMENT',
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
+              color: AdaptiveTheme.of(context).mode.isLight
+                  ? blackColor
+                  : whiteColor,
             ),
             SizedBox(height: 11.h),
             Row(
@@ -154,10 +163,11 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     Get.to(const ElectricityInvoiceNumberScreen());
                   },
                   child: OptionsCardAndDescription(
+                    // icon: Icons.bolt,
                     icon: electricityIcon,
                     description: 'Electricity Bill',
-                    width: 35.w,
-                    height: 30.h,
+                    width: 35,
+                    height: 35.h,
                   ),
                 ),
                 SizedBox(width: 20.w),
@@ -165,34 +175,96 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   onTap: () {
                     Get.to(const WaterInvoiceNumberScreen());
                   },
-                  child: OptionsCardAndDescription(
-                    icon: waterIcon,
+                  child: const OptionsCardAndDescription2(
+                    icon: Icons.water_drop_outlined,
                     description: 'Water Bill',
-                    width: 33.w,
-                    height: 27.h,
+                    size: 35,
+                    // height: 27.h,
                   ),
                 ),
-                // SizedBox(width: 20.w),
-                // OptionsCardAndDescription(
-                //   icon: expensesIcon,
-                //   description: 'Expenses',
-                //   width: 40.w,
-                //   height: 35.h,
-                // ),
+                SizedBox(width: 20.w),
+                OptionsCardAndDescription(
+                  icon: expensesIcon,
+                  description: 'Expenses',
+                  width: 40.w,
+                  height: 35.h,
+                ),
+                SizedBox(width: 20.w),
+                OptionsCardAndDescription(
+                  icon: suiIcon,
+                  description: 'Sui Gas',
+                  width: 40.w,
+                  height: 35.h,
+                ),
               ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OptionsCardAndDescription(
+                  icon: solarIcon,
+                  description: 'Solar Bill',
+                  width: 35.w,
+                  height: 30.h,
+                ),
+                SizedBox(width: 20.w),
+                OptionsCardAndDescription(
+                  icon: internetIcon,
+                  description: 'Internet',
+                  width: 40.w,
+                  height: 35.h,
+                ),
+                SizedBox(width: 20.w),
+                OptionsCardAndDescription(
+                  icon: mtagIcon,
+                  description: 'M Tag',
+                  width: 40.w,
+                  height: 35.h,
+                ),
+              ],
+            ),
+            SizedBox(height: 28.h),
+            quickSandMediumText(
+              text: 'FEDERAL SERVICES',
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+              color: AdaptiveTheme.of(context).mode.isLight
+                  ? blackColor
+                  : whiteColor,
+            ),
+            SizedBox(height: 11.h),
+            GestureDetector(
+              onTap: () {
+                Get.to(const ComplaintScreen());
+              },
+              child: OptionsCardAndDescription(
+                icon: federalServicesIcon,
+                description: 'Federal Services',
+                width: 38.w,
+                height: 60.h,
+              ),
             ),
             SizedBox(height: 28.h),
             quickSandMediumText(
               text: 'RECORDS',
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
+              color: AdaptiveTheme.of(context).mode.isLight
+                  ? blackColor
+                  : whiteColor,
             ),
             SizedBox(height: 11.h),
-            OptionsCardAndDescription(
-              icon: recordsIcon,
-              description: 'Personal Records',
-              width: 30.w,
-              height: 25.h,
+            GestureDetector(
+              onTap: () {
+                Get.to(const RecordScreen());
+              },
+              child: OptionsCardAndDescription(
+                icon: recordsIcon,
+                description: 'Personal Records',
+                width: 30.w,
+                height: 25.h,
+              ),
             ),
             SizedBox(height: 30.h),
           ],

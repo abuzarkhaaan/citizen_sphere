@@ -43,6 +43,14 @@ dependencies:
   provider: ^6.1.1
   image_picker: ^1.0.7
   sks_ticket_view: ^1.0.0
+  dropdown_button2: ^2.3.9
+  file_picker: ^6.2.0
+  # mobile_scanner: ^4.0.1
+  # pretty_qr_code: ^3.3.0
+  qr_flutter: ^4.1.0
+  flutter_barcode_scanner: ^2.0.0
+  adaptive_theme: ^3.6.0
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -53,7 +61,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

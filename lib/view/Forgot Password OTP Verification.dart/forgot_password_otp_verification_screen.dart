@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,6 +43,9 @@ class _ForgotPasswordOTPVerificationScreenState
                       text: 'OTP Verification',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     quickSandMediumText(
                       text: 'Enter the OTP sent to',
@@ -74,6 +78,9 @@ class _ForgotPasswordOTPVerificationScreenState
                     quickSandMediumText(
                       text: '00:30 Sec',
                       fontSize: 14.sp,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                       // fontWeight: FontWeight,
                       // color: lightGrayColor,
                     ),
@@ -84,13 +91,19 @@ class _ForgotPasswordOTPVerificationScreenState
                         children: [
                           TextSpan(
                             text: 'Did\'t receive code?',
-                            style: quickSandStyle(fontSize: 14.sp),
+                            style: quickSandStyle(
+                              fontSize: 14.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
+                            ),
                           ),
                           WidgetSpan(
                             child: quickSandNormalText(
                               text: ' Re-send',
                               fontSize: 14.sp,
                               color: greenColor,
+                              // textAlign: TextAlign.end,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,9 @@ class TransactionContainer extends StatelessWidget {
                         fontSize: 18.sp,
                         maxLines: 2,
                         fontWeight: FontWeight.w700,
+                        color: AdaptiveTheme.of(context).mode.isLight
+                            ? blackColor
+                            : whiteColor,
                       ),
                     ),
                     quickSandMediumText(

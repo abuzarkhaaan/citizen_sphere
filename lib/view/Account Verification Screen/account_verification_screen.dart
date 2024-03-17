@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
@@ -40,6 +41,9 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
                       text: 'Account Verification',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     quickSandMediumText(
                       text: 'Select which contact details should',
@@ -164,6 +168,9 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
                                   text: '+9212345678911',
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.w600,
+                                  color: AdaptiveTheme.of(context).mode.isLight
+                                      ? blackColor
+                                      : whiteColor,
                                 ),
                               ],
                             ),
@@ -205,12 +212,15 @@ class _AccountVerificationScreenState extends State<AccountVerificationScreen> {
                                 quickSandNormalText(
                                   text: 'via Email:',
                                   fontSize: 14.sp,
-                                  // color: whiteColor,
+                                  color: textgrayColor,
                                 ),
                                 quickSandNormalText(
                                   text: 'yourmail@gmail.com',
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.w600,
+                                  color: AdaptiveTheme.of(context).mode.isLight
+                                      ? blackColor
+                                      : whiteColor,
                                   // color: whiteColor
                                 ),
                               ],

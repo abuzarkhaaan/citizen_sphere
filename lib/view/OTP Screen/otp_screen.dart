@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/view/Thank%20You%20Screen/thankyou_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -44,6 +45,9 @@ class _OTPScreenState extends State<OTPScreen> {
                       text: 'Account Verification',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     quickSandMediumText(
                       text: 'Enter the OTP sent to',
@@ -76,6 +80,9 @@ class _OTPScreenState extends State<OTPScreen> {
                     quickSandMediumText(
                       text: '00:30 Sec',
                       fontSize: 14.sp,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                       // fontWeight: FontWeight,
                       // color: lightGrayColor,
                     ),
@@ -86,7 +93,12 @@ class _OTPScreenState extends State<OTPScreen> {
                         children: [
                           TextSpan(
                             text: 'Did\'t receive code?',
-                            style: quickSandStyle(fontSize: 14.sp),
+                            style: quickSandStyle(
+                              fontSize: 14.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
+                            ),
                           ),
                           WidgetSpan(
                             child: quickSandNormalText(

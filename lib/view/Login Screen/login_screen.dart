@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
@@ -52,6 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: 'Welcome Back',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     SizedBox(height: 38.h),
                     Row(
@@ -60,17 +64,24 @@ class _LoginScreenState extends State<LoginScreen> {
                         Container(
                           height: 1.h,
                           width: 120.w,
-                          color: blackColor,
+                          color: AdaptiveTheme.of(context).mode.isLight
+                              ? blackColor
+                              : whiteColor,
                         ),
                         quickSandMediumText(
                           text: ' Sign in ',
                           fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
+                          color: AdaptiveTheme.of(context).mode.isLight
+                              ? blackColor
+                              : whiteColor,
                         ),
                         Container(
                           height: 1.h,
                           width: 120.w,
-                          color: blackColor,
+                          color: AdaptiveTheme.of(context).mode.isLight
+                              ? blackColor
+                              : whiteColor,
                         ),
                       ],
                     ),
@@ -103,6 +114,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               quickSandNormalText(
                                 text: "Remember me?",
                                 fontSize: 17.sp,
+                                color: AdaptiveTheme.of(context).mode.isLight
+                                    ? blackColor
+                                    : whiteColor,
                               )
                             ],
                           )
@@ -143,6 +157,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: quickSandMediumText(
                           text: 'Forgot Password?',
                           fontSize: 13.sp,
+                          color: AdaptiveTheme.of(context).mode.isLight
+                              ? blackColor
+                              : whiteColor,
                         ),
                       ),
                     ),
@@ -153,7 +170,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           TextSpan(
                             text: 'Don\'t have an account?',
-                            style: quickSandStyle(fontSize: 14.sp),
+                            style: quickSandStyle(
+                              fontSize: 14.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
+                            ),
                           ),
                           WidgetSpan(
                             child: GestureDetector(

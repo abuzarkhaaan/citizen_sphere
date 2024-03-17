@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
@@ -5,9 +6,7 @@ import 'package:citizen_sphere2/core/helper%20widgets/custom_green_button.dart';
 import 'package:citizen_sphere2/view%20model/My%20Profile%20View%20Model/my_profile_view_model.dart';
 import 'package:citizen_sphere2/view/Change%20Password%20Screen/change_password_screen.dart';
 import 'package:citizen_sphere2/view/Login%20Screen/login_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -125,14 +124,23 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               text: 'Change Theme',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
-                            Switch(
-                                value: darkMode,
+                            Transform.scale(
+                              scale: 0.8,
+                              child: Switch(
+                                value: AdaptiveTheme.of(context).mode.isDark,
                                 onChanged: (value) {
-                                  setState(() {
-                                    darkMode = value;
-                                  });
-                                }),
+                                  if (value) {
+                                    AdaptiveTheme.of(context).setDark();
+                                  } else {
+                                    AdaptiveTheme.of(context).setLight();
+                                  }
+                                },
+                              ),
+                            ),
                           ],
                         ),
                         const Divider(
@@ -234,6 +242,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             text: 'Logout',
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w600,
+                            color: AdaptiveTheme.of(context).mode.isLight
+                                ? blackColor
+                                : whiteColor,
                           ),
                           const Divider(
                             color: grayColor,
@@ -268,6 +279,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             text: 'Change Password',
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w600,
+                            color: AdaptiveTheme.of(context).mode.isLight
+                                ? blackColor
+                                : whiteColor,
                           ),
                           const Divider(
                             color: grayColor,

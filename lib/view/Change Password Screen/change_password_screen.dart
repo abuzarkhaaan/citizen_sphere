@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/view/Forgot%20Password%20Screen/forgot_password_screen.dart';
 import 'package:citizen_sphere2/view/Home%20Screen/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +48,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       text: 'Change Password',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     SizedBox(height: 36.h),
                     Form(
@@ -66,6 +71,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               child: quickSandMediumText(
                                 text: 'Forgot Password?',
                                 fontSize: 13.sp,
+                                color: AdaptiveTheme.of(context).mode.isLight
+                                    ? blackColor
+                                    : whiteColor,
                               ),
                             ),
                           ),
@@ -99,6 +107,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               quickSandNormalText(
                                 text: "Remember me?",
                                 fontSize: 17.sp,
+                                color: AdaptiveTheme.of(context).mode.isLight
+                                    ? blackColor
+                                    : whiteColor,
                               )
                             ],
                           )

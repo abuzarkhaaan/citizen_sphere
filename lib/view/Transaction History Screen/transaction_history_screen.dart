@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -30,6 +32,9 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
             text: 'Transactions',
             fontSize: 30.sp,
             fontWeight: FontWeight.w800,
+            color: AdaptiveTheme.of(context).mode.isLight
+                ? blackColor
+                : whiteColor,
           ),
           SizedBox(height: 24.h),
           Expanded(

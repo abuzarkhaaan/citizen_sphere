@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -52,9 +53,11 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                       ],
                       gradient: LinearGradient(
                         colors: [
+                          Theme.of(context).colorScheme.primaryContainer,
+                          Theme.of(context).colorScheme.primaryContainer,
                           // greenColor.withOpacity(.4),
-                          whiteColor,
-                          whiteColor,
+                          // whiteColor,
+                          // whiteColor,
                           greenColor.withOpacity(.8),
                           greenColor.withOpacity(.9),
                           greenColor,
@@ -70,10 +73,16 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                         quickSandMediumText(
                           text: 'Balance',
                           fontSize: 16.sp,
+                          color: AdaptiveTheme.of(context).mode.isLight
+                              ? blackColor
+                              : whiteColor,
                         ),
                         quickSandMediumText(
                           text: 'Rs. 5000',
                           fontSize: 35.sp,
+                          color: AdaptiveTheme.of(context).mode.isLight
+                              ? blackColor
+                              : whiteColor,
                         )
                       ],
                     ),
@@ -85,6 +94,9 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                       text: 'SEND TO',
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                   ),
                   SizedBox(height: 30.h),
@@ -148,16 +160,23 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                       Container(
                         width: 130.w,
                         height: 1.h,
-                        color: blackColor,
+                        color: AdaptiveTheme.of(context).mode.isLight
+                            ? blackColor
+                            : whiteColor,
                       ),
                       quickSandMediumText(
                         text: '  RECENT  ',
                         fontSize: 14.sp,
+                        color: AdaptiveTheme.of(context).mode.isLight
+                            ? blackColor
+                            : whiteColor,
                       ),
                       Container(
                         height: 1.h,
                         width: 130.w,
-                        color: blackColor,
+                        color: AdaptiveTheme.of(context).mode.isLight
+                            ? blackColor
+                            : whiteColor,
                       ),
                     ],
                   ),
@@ -167,30 +186,74 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                     children: [
                       SizedBox(
                         width: 70.w,
-                        height: 70.h,
-                        child: ClipOval(
-                          child: Image.asset(man1),
+                        height: 100.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipOval(
+                              child: Image.asset(man1),
+                            ),
+                            quickSandMediumText(
+                              text: 'John',
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
                         width: 70.w,
-                        height: 70.h,
-                        child: ClipOval(
-                          child: Image.asset(man2),
+                        height: 100.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipOval(
+                              child: Image.asset(man2),
+                            ),
+                            quickSandMediumText(
+                              text: 'Charles',
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
                         width: 70.w,
-                        height: 70.h,
-                        child: ClipOval(
-                          child: Image.asset(man3),
+                        height: 100.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipOval(
+                              child: Image.asset(man3),
+                            ),
+                            quickSandMediumText(
+                              text: 'Zayn',
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(
                         width: 70.w,
-                        height: 70.h,
-                        child: ClipOval(
-                          child: Image.asset(man4),
+                        height: 100.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipOval(
+                              child: Image.asset(man4),
+                            ),
+                            quickSandMediumText(
+                              text: 'Mustafa',
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
+                            )
+                          ],
                         ),
                       )
                     ],
@@ -219,11 +282,21 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                                           quickSandMediumText(
                                             text: 'AMOUNT',
                                             fontSize: 14.sp,
+                                            color: AdaptiveTheme.of(context)
+                                                    .mode
+                                                    .isLight
+                                                ? blackColor
+                                                : whiteColor,
                                           ),
                                           quickSandMediumText(
                                             text:
                                                 'Rs. ${amountController.text}',
                                             fontSize: 14.sp,
+                                            color: AdaptiveTheme.of(context)
+                                                    .mode
+                                                    .isLight
+                                                ? blackColor
+                                                : whiteColor,
                                           ),
                                         ],
                                       ),
@@ -235,10 +308,20 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                                           quickSandMediumText(
                                             text: 'FEES',
                                             fontSize: 14.sp,
+                                            color: AdaptiveTheme.of(context)
+                                                    .mode
+                                                    .isLight
+                                                ? blackColor
+                                                : whiteColor,
                                           ),
                                           quickSandMediumText(
-                                            text: 'Rs. 50',
+                                            text: 'Rs. 0',
                                             fontSize: 14.sp,
+                                            color: AdaptiveTheme.of(context)
+                                                    .mode
+                                                    .isLight
+                                                ? blackColor
+                                                : whiteColor,
                                           ),
                                         ],
                                       ),
@@ -252,11 +335,21 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                                           quickSandMediumText(
                                             text: 'TOTAL AMOUNT',
                                             fontSize: 14.sp,
+                                            color: AdaptiveTheme.of(context)
+                                                    .mode
+                                                    .isLight
+                                                ? blackColor
+                                                : whiteColor,
                                           ),
                                           quickSandMediumText(
                                             text:
                                                 'Rs. ${amountController.text}',
                                             fontSize: 14.sp,
+                                            color: AdaptiveTheme.of(context)
+                                                    .mode
+                                                    .isLight
+                                                ? blackColor
+                                                : whiteColor,
                                           ),
                                         ],
                                       ),
@@ -267,7 +360,10 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                                           showDialog(
                                             context: context,
                                             builder: (BuildContext context) {
-                                              return const TransferMoneyDialogBox();
+                                              return TransferMoneyDialogBox(
+                                                number: numberController.text,
+                                                amount: amountController.text,
+                                              );
                                             },
                                           );
                                         },

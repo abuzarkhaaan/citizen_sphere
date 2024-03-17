@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
@@ -32,6 +33,9 @@ class NotificationContainer extends StatelessWidget {
                 text: 'Today',
                 fontSize: 25.sp,
                 fontWeight: FontWeight.w600,
+                color: AdaptiveTheme.of(context).mode.isLight
+                    ? blackColor
+                    : whiteColor,
               ),
             ),
           if (index == 5)
@@ -41,6 +45,9 @@ class NotificationContainer extends StatelessWidget {
                 text: 'Yesterday',
                 fontSize: 25.sp,
                 fontWeight: FontWeight.w600,
+                color: AdaptiveTheme.of(context).mode.isLight
+                    ? blackColor
+                    : whiteColor,
               ),
             ),
           Container(
@@ -68,9 +75,9 @@ class NotificationContainer extends StatelessWidget {
                   child: Center(
                     child: Icon(
                       (status == 'incoming')
-                          ? Icons.arrow_upward_rounded
+                          ? Icons.arrow_downward_rounded
                           : (status == 'outgoing')
-                              ? Icons.arrow_downward_rounded
+                              ? Icons.arrow_upward_rounded
                               : (status == 'water')
                                   ? Icons.water_drop_rounded
                                   : (status == 'electricity')
@@ -110,11 +117,17 @@ class NotificationContainer extends StatelessWidget {
                             fontSize: 15.sp,
                             maxLines: 2,
                             fontWeight: FontWeight.w700,
+                            color: AdaptiveTheme.of(context).mode.isLight
+                                ? blackColor
+                                : whiteColor,
                           ),
                           quickSandMediumText(
                             text: date,
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w600,
+                            color: AdaptiveTheme.of(context).mode.isLight
+                                ? blackColor
+                                : whiteColor,
                           ),
                         ],
                       ),

@@ -1,9 +1,12 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:citizen_sphere2/view/Login%20Screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_textfield.dart';
+import 'package:get/get.dart';
 
 class SetNewPasswordScreen extends StatefulWidget {
   const SetNewPasswordScreen({super.key});
@@ -21,6 +24,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
   void savePasswords() {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
+      Get.offAll(const LoginScreen());
     }
   }
 
@@ -51,6 +55,9 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                       text: 'Set New Password',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     SizedBox(height: 30.h),
                     Form(
@@ -86,6 +93,9 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                               quickSandNormalText(
                                 text: "Remember me?",
                                 fontSize: 17.sp,
+                                color: AdaptiveTheme.of(context).mode.isLight
+                                    ? blackColor
+                                    : whiteColor,
                               )
                             ],
                           )

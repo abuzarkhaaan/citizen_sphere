@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
@@ -41,6 +42,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       text: 'Forgot Password?',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     quickSandMediumText(
                       text: 'Don\'t worry, it happens. Please Select',
@@ -93,6 +97,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                   text: '+9212345678911',
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.w600,
+                                  color: AdaptiveTheme.of(context).mode.isLight
+                                      ? blackColor
+                                      : whiteColor,
                                 ),
                               ],
                             ),
@@ -134,12 +141,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                 quickSandNormalText(
                                   text: 'via Email:',
                                   fontSize: 14.sp,
-                                  // color: whiteColor,
+                                  color: textgrayColor,
                                 ),
                                 quickSandNormalText(
                                   text: 'yourmail@gmail.com',
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.w600,
+                                  color: AdaptiveTheme.of(context).mode.isLight
+                                      ? blackColor
+                                      : whiteColor,
                                   // color: whiteColor
                                 ),
                               ],
@@ -165,7 +175,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           children: [
                             TextSpan(
                               text: 'Remember Password?',
-                              style: quickSandStyle(fontSize: 14.sp),
+                              style: quickSandStyle(
+                                fontSize: 14.sp,
+                                color: AdaptiveTheme.of(context).mode.isLight
+                                    ? blackColor
+                                    : whiteColor,
+                              ),
                             ),
                             WidgetSpan(
                               child: GestureDetector(

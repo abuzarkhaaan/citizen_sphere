@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,15 @@ class CustomEmailTextField extends StatelessWidget {
           text: 'Email',
           fontSize: 14.sp,
           fontWeight: FontWeight.w600,
+          color:
+              AdaptiveTheme.of(context).mode.isLight ? blackColor : whiteColor,
         ),
         hintText: 'user123@gmail.com',
         hintStyle: quickSandStyle(
           fontSize: 15.sp,
           fontWeight: FontWeight.normal,
+          color:
+              AdaptiveTheme.of(context).mode.isLight ? blackColor : whiteColor,
           // color: darkGreyColor,
         ),
         contentPadding: EdgeInsets.only(left: 10.w),
@@ -82,6 +87,8 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
           text: widget.label ?? 'Password',
           fontSize: 14.sp,
           fontWeight: FontWeight.w600,
+          color:
+              AdaptiveTheme.of(context).mode.isLight ? blackColor : whiteColor,
           // color: Theme.of(context).colorScheme.inversePrimary,
         ),
         // hintText: '*********',
@@ -131,6 +138,7 @@ class CustomTextField extends StatefulWidget {
     required this.keyboardType,
     required this.controller,
     this.hintext,
+    this.maxlines,
     required this.label,
     this.prefixIcon,
     this.suffixIcon,
@@ -143,6 +151,7 @@ class CustomTextField extends StatefulWidget {
   final void Function()? onTap;
   final String? hintext;
   final String label;
+  final int? maxlines;
   final TextInputType keyboardType;
   final TextEditingController controller;
   final Widget? prefixIcon;
@@ -169,7 +178,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
               children: [
                 TextSpan(
                   text: widget.label,
-                  style: quickSandStyle(fontSize: 14.sp),
+                  style: quickSandStyle(
+                    fontSize: 14.sp,
+                    color: AdaptiveTheme.of(context).mode.isLight
+                        ? blackColor
+                        : whiteColor,
+                  ),
                 ),
                 if (widget.isRequired)
                   WidgetSpan(
@@ -187,6 +201,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
           hintStyle: quickSandStyle(
             fontSize: 15.sp,
             fontWeight: FontWeight.normal,
+            color: AdaptiveTheme.of(context).mode.isLight
+                ? blackColor
+                : whiteColor,
             // color: darkGreyColor,
           ),
           contentPadding: EdgeInsets.only(left: 10.w),
@@ -199,6 +216,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         autocorrect: false,
         obscureText: widget.isObscure,
+        maxLines: widget.maxlines,
         obscuringCharacter: '*',
         textCapitalization: TextCapitalization.none,
         validator: widget.validator,

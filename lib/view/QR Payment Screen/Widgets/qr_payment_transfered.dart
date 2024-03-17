@@ -5,11 +5,11 @@ import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 
-class TransferMoneyDialogBox extends StatelessWidget {
-  const TransferMoneyDialogBox(
-      {super.key, required this.number, required this.amount});
-  final String number;
-  final String amount;
+class QrPaymentTransferedDialog extends StatelessWidget {
+  const QrPaymentTransferedDialog(
+      {super.key, required this.phoneNo, required this.name});
+  final String name;
+  final String phoneNo;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class TransferMoneyDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: number,
+                              text: phoneNo,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -110,7 +110,7 @@ class TransferMoneyDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'Ahsan Yousafzai',
+                              text: name,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -125,7 +125,7 @@ class TransferMoneyDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: amount,
+                              text: 'Rs. 1000',
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)

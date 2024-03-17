@@ -1,3 +1,5 @@
+import 'package:citizen_sphere2/view/QR%20Code%20Generator%20Screen/qr_code_generator_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -46,9 +48,14 @@ class _ItsMeScreenState extends State<ItsMeScreen> {
                     fontWeight: FontWeight.w600,
                     color: whiteColor,
                   ),
-                  const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: greenColor,
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(const QrCodeGeneratorScreen());
+                    },
+                    child: const Icon(
+                      Icons.qr_code,
+                      color: whiteColor,
+                    ),
                   ),
                 ],
               ),

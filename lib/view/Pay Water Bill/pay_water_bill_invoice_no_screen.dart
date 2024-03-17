@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/view/Pay%20Water%20Bill/pay_water_bill_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -93,6 +94,9 @@ class _WaterInvoiceNumberScreenState extends State<WaterInvoiceNumberScreen> {
                           fontSize: 15.sp,
                           fontWeight: FontWeight.w600,
                           textAlign: TextAlign.center,
+                          color: AdaptiveTheme.of(context).mode.isLight
+                              ? blackColor
+                              : whiteColor,
                         ),
                       ),
                     ),

@@ -33,8 +33,12 @@ String transactionDone = '$staticImagePath/transactionDone.png';
 
 ///Home Screen///
 String electricityIcon = '$staticIconPath/electricityIcon.png';
-String federalServicesIcon = '$staticIconPath/federalServicesIcon.png';
+String federalServicesIcon = '$staticIconPath/govtLogo.png';
 String itsMeIcon = '$staticIconPath/itsMeIcon.png';
 String waterIcon = '$staticIconPath/waterIcon.png';
 String recordsIcon = '$staticIconPath/recordsIcon.png';
 String expensesIcon = '$staticIconPath/expensesIcon.png';
+String internetIcon = '$staticIconPath/internetIcon.png';
+String mtagIcon = '$staticIconPath/mtagIcon.png';
+String suiIcon = '$staticIconPath/suiIcon.png';
+String solarIcon = '$staticIconPath/solarIcon.png';

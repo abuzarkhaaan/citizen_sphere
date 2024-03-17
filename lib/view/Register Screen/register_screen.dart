@@ -1,14 +1,19 @@
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_green_button.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_textfield.dart';
 import 'package:citizen_sphere2/view/Register%20Screen/register_pt2_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -22,6 +27,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   final mobileNoController = TextEditingController();
   final cnicController = TextEditingController();
   final cityController = TextEditingController();
@@ -42,6 +49,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
+  /////CNIC Picker/////
+  File? cnicFront;
+  File? cnicBack;
+
+  Future<void> pickCnicFrontImage() async {
+    debugPrint('Picking Cnic Image');
+    final imagePicker = ImagePicker();
+    final image = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (image == null) {
+      return;
+    }
+    cnicFront = File(image.path);
+    setState(() {});
+  }
+
+  Future<void> pickCnicBackImage() async {
+    debugPrint('Picking Cnic Image');
+    final imagePicker = ImagePicker();
+    final image = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (image == null) {
+      return;
+    }
+    cnicBack = File(image.path);
+    setState(() {});
+  }
+
+///////////Date Picker
   DateTime selectedDate = DateTime.now();
 
   Future<void> _selectDate(BuildContext context) async {
@@ -85,6 +125,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       text: 'Register!',
                       fontSize: 36.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     quickSandMediumText(
                       text: 'Just a few steps and it will be done',
@@ -197,6 +240,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 23.h),
                     CustomTextField(
+                      keyboardType: TextInputType.name,
+                      controller: passwordController,
+                      label: 'Password',
+                      isRequired: true,
+                      isObscure: true,
+                      maxlines: 1,
+                      // suffixIcon: const Icon(Icons.email),
+                    ),
+                    SizedBox(height: 23.h),
+                    CustomTextField(
                       keyboardType: TextInputType.number,
                       controller: mobileNoController,
                       label: 'Mobile No',
@@ -232,6 +285,70 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       isObscure: false,
                       hintext: 'DD/MM/YYYY',
                       suffixIcon: const Icon(Icons.calendar_month),
+                    ),
+                    SizedBox(height: 23.h),
+                    quickSandMediumText(
+                      text: 'CNIC Front and Back',
+                      fontSize: 20.sp,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
+                    ),
+                    SizedBox(height: 15.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: pickCnicFrontImage,
+                          child: Container(
+                            width: 175.w,
+                            height: 89.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.sp),
+                              border: Border.all(color: greenColor),
+                            ),
+                            child: cnicFront != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.sp),
+                                    child: Image.file(
+                                      cnicFront!,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  )
+                                : Center(
+                                    child: quickSandMediumText(
+                                        text: 'Front',
+                                        color: greenColor,
+                                        fontSize: 17.sp),
+                                  ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: pickCnicBackImage,
+                          child: Container(
+                            width: 175.w,
+                            height: 89.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.sp),
+                              border: Border.all(color: greenColor),
+                            ),
+                            child: cnicBack != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.sp),
+                                    child: Image.file(
+                                      cnicBack!,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  )
+                                : Center(
+                                    child: quickSandMediumText(
+                                        text: 'Back',
+                                        color: greenColor,
+                                        fontSize: 17.sp),
+                                  ),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 35.h),
                     GestureDetector(

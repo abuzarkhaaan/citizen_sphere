@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -78,12 +79,18 @@ class _PayWaterBillScreenState extends State<PayWaterBillScreen> {
                       text: 'Your Water Bill is Due',
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     SizedBox(height: 15.h),
                     quickSandNormalText(
                       text: 'Rs. 5000',
                       fontSize: 25.sp,
                       fontWeight: FontWeight.w600,
+                      color: AdaptiveTheme.of(context).mode.isLight
+                          ? blackColor
+                          : whiteColor,
                     ),
                     SizedBox(height: 20.h),
                     GestureDetector(
@@ -109,6 +116,9 @@ class _PayWaterBillScreenState extends State<PayWaterBillScreen> {
                         text: 'Bill Details',
                         fontSize: 22.sp,
                         fontWeight: FontWeight.w600,
+                        color: AdaptiveTheme.of(context).mode.isLight
+                            ? blackColor
+                            : whiteColor,
                       ),
                     ),
                     SizedBox(height: 15.h),
@@ -122,34 +132,52 @@ class _PayWaterBillScreenState extends State<PayWaterBillScreen> {
                             quickSandNormalText(
                               text: 'Company Name',
                               fontSize: 15.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 3.h),
                             quickSandNormalText(
                               text: 'WSSP',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 25.h),
                             quickSandNormalText(
                               text: 'Billing Month',
                               fontSize: 15.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 3.h),
                             quickSandNormalText(
                               text: 'Feb 2024',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 25.h),
                             quickSandNormalText(
                               text: 'Consumer Name',
                               fontSize: 15.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 3.h),
                             quickSandNormalText(
                               text: 'Mustafa',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                           ],
                         ),
@@ -160,34 +188,52 @@ class _PayWaterBillScreenState extends State<PayWaterBillScreen> {
                             quickSandNormalText(
                               text: 'Reference No',
                               fontSize: 15.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 3.h),
                             quickSandNormalText(
                               text: '12345678901234',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 25.h),
                             quickSandNormalText(
                               text: 'Bill Status',
                               fontSize: 15.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 3.h),
                             quickSandNormalText(
                               text: 'Not Paid',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 25.h),
                             quickSandNormalText(
                               text: 'Due Date',
                               fontSize: 15.sp,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                             SizedBox(height: 3.h),
                             quickSandNormalText(
                               text: '10 Feb 2024',
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w600,
+                              color: AdaptiveTheme.of(context).mode.isLight
+                                  ? blackColor
+                                  : whiteColor,
                             ),
                           ],
                         )
