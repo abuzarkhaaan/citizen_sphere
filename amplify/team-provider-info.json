@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-citizen-staging-195114-authRole",
+      "UnauthRoleArn": "arn:aws:iam::339712801168:role/amplify-citizen-staging-195114-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::339712801168:role/amplify-citizen-staging-195114-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-citizen-staging-195114-deployment",
+      "UnauthRoleName": "amplify-citizen-staging-195114-unauthRole",
+      "StackName": "amplify-citizen-staging-195114",
+      "StackId": "arn:aws:cloudformation:us-east-1:339712801168:stack/amplify-citizen-staging-195114/605a90c0-e7bc-11ee-b9cc-123c597b3355",
+      "AmplifyAppId": "d1w549xu74m7v6"
+    },
+    "categories": {
+      "auth": {
+        "citizene72e5048": {}
+      }
+    }
+  }
+}

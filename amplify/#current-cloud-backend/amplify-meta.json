@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-citizen-staging-195114-authRole",
+      "UnauthRoleArn": "arn:aws:iam::339712801168:role/amplify-citizen-staging-195114-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::339712801168:role/amplify-citizen-staging-195114-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-citizen-staging-195114-deployment",
+      "UnauthRoleName": "amplify-citizen-staging-195114-unauthRole",
+      "StackName": "amplify-citizen-staging-195114",
+      "StackId": "arn:aws:cloudformation:us-east-1:339712801168:stack/amplify-citizen-staging-195114/605a90c0-e7bc-11ee-b9cc-123c597b3355",
+      "AmplifyAppId": "d1w549xu74m7v6"
+    }
+  },
+  "auth": {
+    "citizene72e5048": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-citizen-staging-195114-deployment/amplify-cfn-templates/auth/citizene72e5048-cloudformation-template.json",
+        "logicalId": "authcitizene72e5048"
+      },
+      "lastPushTimeStamp": "2024-03-21T21:01:36.582Z",
+      "output": {
+        "UserPoolId": "us-east-1_cDPTRpB0F",
+        "AppClientIDWeb": "2rd1uee5bpv6dca3v2vmesds57",
+        "AppClientID": "2pkh79pvik5pvgpk8949behtfg",
+        "IdentityPoolId": "us-east-1:f4da5d78-ec94-4e9a-8ac9-6bdda9e2db3d",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:339712801168:userpool/us-east-1_cDPTRpB0F",
+        "IdentityPoolName": "citizene72e5048_identitypool_e72e5048__staging",
+        "UserPoolName": "citizene72e5048_userpool_e72e5048"
+      },
+      "lastPushDirHash": "mk4Q7QsOP5wB79QlF/a6QCYUuuU="
+    }
+  }
+}

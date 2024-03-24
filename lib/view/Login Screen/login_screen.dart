@@ -8,7 +8,25 @@ import 'package:citizen_sphere2/view/Home%20Screen/home_screen.dart';
 import 'package:citizen_sphere2/view/Register%20Screen/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import "package:firebase_auth/firebase_auth.dart";
+import "package:citizen_sphere2/auth.dart";
+
+// ignore: non_constant_identifier_names
+void Validate(String email) {
+  bool isvalid = EmailValidator.validate(email);
+  // ignore: avoid_print
+  print(isvalid);
+}
+
+final User? user = Auth().currentUser;
+
+Future<void> signOut() async {
+  await Auth().signOut();
+}
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

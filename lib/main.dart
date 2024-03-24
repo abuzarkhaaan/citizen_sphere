@@ -6,6 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:citizen_sphere2/core/multi%20providers%20list/multi_providers_list.dart';
 import 'package:citizen_sphere2/view/splash_screen.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import "package:firebase_auth/firebase_auth.dart";
 
 // bool darkMode = false;
 void main() async {
