@@ -10,9 +10,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import "package:firebase_auth/firebase_auth.dart";
 
+import 'firebase_options.dart';
+
 // bool darkMode = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.android);
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   // SharedPreferences prefs = await SharedPreferences.getInstance();
   // bool savedMode = prefs.getBool('darkMode') ?? false;
