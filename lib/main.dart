@@ -5,14 +5,13 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:citizen_sphere2/core/multi%20providers%20list/multi_providers_list.dart';
 import 'package:citizen_sphere2/view/splash_screen.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import "package:firebase_auth/firebase_auth.dart";
+import 'firebase_options.dart';
 
 // bool darkMode = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.android);
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   // SharedPreferences prefs = await SharedPreferences.getInstance();
   // bool savedMode = prefs.getBool('darkMode') ?? false;
@@ -30,6 +29,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   final AdaptiveThemeMode? savedThemeMode;
   const MyApp({super.key, this.savedThemeMode});
+
+  static showToastMessage(context, msg) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  }
 
   // This widget is the root of your application.
   @override

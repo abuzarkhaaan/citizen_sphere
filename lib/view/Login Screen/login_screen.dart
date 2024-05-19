@@ -3,6 +3,7 @@ import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_textfield.dart';
+import 'package:citizen_sphere2/main.dart';
 import 'package:citizen_sphere2/view/Forgot%20Password%20Screen/forgot_password_screen.dart';
 import 'package:citizen_sphere2/view/Home%20Screen/home_screen.dart';
 import 'package:citizen_sphere2/view/Register%20Screen/register_screen.dart';
@@ -14,6 +15,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import "package:firebase_auth/firebase_auth.dart";
 import "package:citizen_sphere2/auth.dart";
+import 'package:provider/provider.dart';
+
+import '../../view model/firebase_provider.dart';
 
 // ignore: non_constant_identifier_names
 void Validate(String email) {
@@ -123,10 +127,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     _isChecked = value!;
                                   });
                                 },
-                                visualDensity: VisualDensity(
-                                  horizontal: -4.w,
-                                  vertical: -4.h,
-                                ),
+                                // visualDensity: VisualDensity(
+                                //   horizontal: -4.w,
+                                //   vertical: -4.h,
+                                // ),
                                 // fillColor: MaterialStateColor,
                               ),
                               quickSandNormalText(
@@ -143,8 +147,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 10.h),
                     GestureDetector(
-                      onTap: () {
-                        Get.to(const HomeScreen());
+                      onTap: () async {
+                        String email = emailController.text;
+                        String password = passwordController.text;
+                        if (email.trim().isNotEmpty &&
+                            password.trim().isNotEmpty) {
+                          final FirebaseAuth auth = FirebaseAuth.instance;
+                          try {
+                            await auth.signInWithEmailAndPassword(
+                              email: email,
+                              password: password,
+                            );
+                            Provider.of<FirebaseProvider>(context,
+                                    listen: false)
+                                .getUserInfoNode();
+                            Get.offAll(const HomeScreen());
+                          } catch (e) {
+                            if (e.toString().contains(
+                                "The email address is badly formatted")) {
+                              MyApp.showToastMessage(context,
+                                  "Please enter a valid email address");
+                            } else if (e.toString().contains(
+                                "The supplied auth credential is incorrect")) {
+                              MyApp.showToastMessage(context,
+                                  "User not found or Password did not match");
+                            } else {
+                              MyApp.showToastMessage(context, "$e");
+                            }
+                          }
+                        } else {
+                          MyApp.showToastMessage(
+                              context, "Enter email and password first.");
+                        }
                       },
                       child: Container(
                         width: 1.sw,

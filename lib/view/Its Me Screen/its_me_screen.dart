@@ -1,3 +1,4 @@
+import 'package:citizen_sphere2/view%20model/firebase_provider.dart';
 import 'package:citizen_sphere2/view/QR%20Code%20Generator%20Screen/qr_code_generator_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_green_button.dart';
 import 'package:citizen_sphere2/utils/theme_extensions.dart';
+import 'package:provider/provider.dart';
 
 class ItsMeScreen extends StatefulWidget {
   const ItsMeScreen({super.key});
@@ -21,6 +23,7 @@ class _ItsMeScreenState extends State<ItsMeScreen> {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = context.colorScheme;
+    FirebaseProvider firebaseProvider =  Provider.of<FirebaseProvider>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: greenColor,
@@ -77,8 +80,8 @@ class _ItsMeScreenState extends State<ItsMeScreen> {
                     SizedBox(
                       height: 228.h,
                       child: isFront
-                          ? Image.asset(cnicFront)
-                          : Image.asset(cnicBack),
+                          ? firebaseProvider.cnicImageFront ?? Image.asset(cnicFront)
+                          : firebaseProvider.cnicImageBack ?? Image.asset(cnicBack),
                     ),
                     SizedBox(height: 20.h),
                     GestureDetector(

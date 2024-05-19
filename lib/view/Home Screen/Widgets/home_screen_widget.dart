@@ -1,12 +1,11 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:citizen_sphere2/view%20model/BalanceProvider.dart';
 import 'package:citizen_sphere2/view/Complaints%20Screen/complaint_screen.dart';
 import 'package:citizen_sphere2/view/Its%20Me%20Screen/its_me_screen.dart';
 import 'package:citizen_sphere2/view/Pay%20Electricity%20Bill/pay_electricity_bill_invoice_number_screen.dart';
 import 'package:citizen_sphere2/view/Pay%20Water%20Bill/pay_water_bill_invoice_no_screen.dart';
 import 'package:citizen_sphere2/view/Records%20Screen/records_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
@@ -14,6 +13,7 @@ import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/view/Home%20Screen/Widgets/options_card_and_description.dart';
 import 'package:citizen_sphere2/view/Send%20Money%20Screen/send_money_screen.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreenWidget extends StatefulWidget {
   const HomeScreenWidget({super.key});
@@ -80,7 +80,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                         : whiteColor,
                   ),
                   quickSandMediumText(
-                    text: 'Rs. 5000',
+                    text:
+                        'Rs. ${Provider.of<BalanceProvider>(context).balanceAmount}',
                     fontSize: 48.sp,
                     color: AdaptiveTheme.of(context).mode.isLight
                         ? blackColor

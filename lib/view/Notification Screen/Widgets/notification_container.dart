@@ -10,14 +10,12 @@ class NotificationContainer extends StatelessWidget {
     required this.status,
     required this.title,
     required this.description,
-    required this.unread,
     required this.date,
     required this.index,
   });
   final String status;
   final String title;
   final String description;
-  final bool unread;
   final String date;
   final int index;
 
@@ -132,26 +130,14 @@ class NotificationContainer extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 10.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 245.w,
-                            child: quickSandTitleText(
-                              text: description,
-                              fontSize: 15.sp,
-                              color: anothergrayColor,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          if (unread)
-                            Container(
-                              width: 10.w,
-                              height: 10.h,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle, color: greenColor),
-                            )
-                        ],
+                      SizedBox(
+                        width: 245.w,
+                        child: quickSandTitleText(
+                          text: description,
+                          fontSize: 15.sp,
+                          color: anothergrayColor,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       SizedBox(height: 10.h),
                       const Divider(),

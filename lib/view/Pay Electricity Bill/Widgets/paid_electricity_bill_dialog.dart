@@ -5,8 +5,12 @@ import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 
+import '../../../view model/BillModel.dart';
+
 class PaidElectricityBillDialogBox extends StatelessWidget {
-  const PaidElectricityBillDialogBox({super.key});
+  BillModelClass billModelObj;
+
+  PaidElectricityBillDialogBox(this.billModelObj, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +66,7 @@ class PaidElectricityBillDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: '20 Feb, 2024',
+                              text: billModelObj.month!,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -77,7 +81,7 @@ class PaidElectricityBillDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: '#54463873456',
+                              text: '#${billModelObj.refNumber!}',
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -92,7 +96,7 @@ class PaidElectricityBillDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'Mustafa',
+                              text: billModelObj.consumerName!,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -107,7 +111,7 @@ class PaidElectricityBillDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'PESCO',
+                              text: billModelObj.company!,
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -122,7 +126,7 @@ class PaidElectricityBillDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'Rs. 25000',
+                              text: 'Rs. ${billModelObj.amount!}',
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -152,7 +156,7 @@ class PaidElectricityBillDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'Rs. 25000',
+                              text: 'Rs. ${billModelObj.amount!}',
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: greenColor)

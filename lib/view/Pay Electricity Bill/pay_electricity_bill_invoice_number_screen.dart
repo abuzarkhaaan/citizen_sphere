@@ -3,11 +3,16 @@ import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_green_button.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_textfield.dart';
 import 'package:citizen_sphere2/utils/theme_extensions.dart';
+import 'package:citizen_sphere2/view%20model/firebase_provider.dart';
 import 'package:citizen_sphere2/view/Pay%20Electricity%20Bill/pay_electricity_bill_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import '../../main.dart';
+import '../../view model/BillModel.dart';
 
 class ElectricityInvoiceNumberScreen extends StatefulWidget {
   const ElectricityInvoiceNumberScreen({super.key});
@@ -32,7 +37,7 @@ class _ElectricityInvoiceNumberScreenState
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = context.colorScheme;
-
+    FirebaseProvider firebaseProvider = Provider.of<FirebaseProvider>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: greenColor,
@@ -105,7 +110,14 @@ class _ElectricityInvoiceNumberScreenState
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          Get.to(const PayElectricityBillScreen());
+                          BillModelClass? billObj = getBillObject(
+                              invoiceNoController.text.trim(),
+                              firebaseProvider);
+                          if (billObj != null) {
+                            Get.to(PayElectricityBillScreen(billObj));
+                          } else {
+                            MyApp.showToastMessage(context, "Bill not found");
+                          }
                         }
                       },
                       child: const CustomGreenButton(label: 'Next'),
@@ -118,5 +130,16 @@ class _ElectricityInvoiceNumberScreenState
         ),
       ),
     );
+  }
+
+  BillModelClass? getBillObject(
+      String refNumber, FirebaseProvider firebaseProvider) {
+    for (var obj in firebaseProvider.listOfBills) {
+      print("refNumber = $refNumber and database = ${obj.refNumber}");
+      if (obj.refNumber == refNumber) {
+        return obj;
+      }
+    }
+    return null;
   }
 }

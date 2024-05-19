@@ -8,6 +8,11 @@ import 'package:citizen_sphere2/view/Account%20Verification%20Screen/account_ver
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import '../../view model/firebase_provider.dart';
+import '../../view model/sign_up_provider.dart';
+import '../Thank You Screen/thankyou_screen.dart';
 
 class RegisterPt2Screen extends StatefulWidget {
   const RegisterPt2Screen({super.key});
@@ -17,14 +22,11 @@ class RegisterPt2Screen extends StatefulWidget {
 }
 
 class _RegisterPt2ScreenState extends State<RegisterPt2Screen> {
-  final bloodGroupController = TextEditingController();
-  final weightController = TextEditingController();
-  final heightController = TextEditingController();
-  final ageController = TextEditingController();
-  final diseaseController = TextEditingController();
+  late SignUpProvider signUpProvider;
 
   @override
   Widget build(BuildContext context) {
+    signUpProvider = Provider.of<SignUpProvider>(context);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -136,7 +138,7 @@ class _RegisterPt2ScreenState extends State<RegisterPt2Screen> {
                         CustomTextField(
                           width: 167.w,
                           keyboardType: TextInputType.name,
-                          controller: bloodGroupController,
+                          controller: signUpProvider.bloodGroupController,
                           label: 'Blood Group',
                           isRequired: true,
                           isObscure: false,
@@ -144,7 +146,7 @@ class _RegisterPt2ScreenState extends State<RegisterPt2Screen> {
                         CustomTextField(
                           width: 167.w,
                           keyboardType: TextInputType.number,
-                          controller: weightController,
+                          controller: signUpProvider.weightController,
                           label: 'Height',
                           hintext: 'kg',
                           isRequired: true,
@@ -154,8 +156,8 @@ class _RegisterPt2ScreenState extends State<RegisterPt2Screen> {
                     ),
                     SizedBox(height: 23.h),
                     CustomTextField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: heightController,
+                      keyboardType: TextInputType.number,
+                      controller: signUpProvider.heightController,
                       label: 'Weight',
                       isRequired: true,
                       hintext: 'In feet',
@@ -164,23 +166,34 @@ class _RegisterPt2ScreenState extends State<RegisterPt2Screen> {
                     SizedBox(height: 23.h),
                     CustomTextField(
                       keyboardType: TextInputType.number,
-                      controller: ageController,
+                      controller: signUpProvider.ageController,
                       label: 'Age',
                       isRequired: false,
                       isObscure: false,
                     ),
                     SizedBox(height: 23.h),
                     CustomTextField(
-                      keyboardType: TextInputType.number,
-                      controller: diseaseController,
+                      keyboardType: TextInputType.text,
+                      controller: signUpProvider.diseaseController,
                       label: 'Any Disease?',
                       isRequired: false,
                       isObscure: false,
                     ),
                     SizedBox(height: 35.h),
                     GestureDetector(
-                        onTap: () {
-                          Get.to(const AccountVerificationScreen());
+                        onTap: () async {
+                          var isSignedUp = await signUpProvider.signUp(context);
+                          if (isSignedUp == true) {
+                            var isDataAdded = await signUpProvider
+                                .createUserInfoNode(context);
+                            if (isDataAdded) {
+                              Provider.of<FirebaseProvider>(context,
+                                      listen: false)
+                                  .getUserInfoNode();
+                              Get.to(const ThankYouScreen());
+                            }
+                          }
+                          // Get.to(const AccountVerificationScreen());
                         },
                         child: const CustomGreenButton(label: 'Continue')),
                     SizedBox(height: 35.h),

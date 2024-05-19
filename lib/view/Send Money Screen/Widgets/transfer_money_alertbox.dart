@@ -1,18 +1,30 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:sks_ticket_view/sks_ticket_view.dart';
 import 'package:citizen_sphere2/core/constants/assets.dart';
 import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 
 class TransferMoneyDialogBox extends StatelessWidget {
-  const TransferMoneyDialogBox(
-      {super.key, required this.number, required this.amount});
+  const TransferMoneyDialogBox({
+    super.key,
+    required this.number,
+    required this.amount,
+    this.sender,
+    this.receiver,
+  });
   final String number;
   final String amount;
+  final String? sender;
+  final String? receiver;
 
   @override
   Widget build(BuildContext context) {
+    log('in money dialog raseed');
+
     return AlertDialog(
         content: Stack(
       clipBehavior: Clip.none,
@@ -65,7 +77,8 @@ class TransferMoneyDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: '20 Feb, 2024',
+                              text: DateFormat('dd-MM-yyyy')
+                                  .format(DateTime.now()),
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -95,7 +108,7 @@ class TransferMoneyDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'User',
+                              text: sender ?? 'User',
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -110,7 +123,7 @@ class TransferMoneyDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'Ahsan Yousafzai',
+                              text: receiver ?? 'Ahsan Yousafzai',
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: anothergrayColor)
@@ -155,7 +168,7 @@ class TransferMoneyDialogBox extends StatelessWidget {
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600),
                           quickSandNormalText(
-                              text: 'Rs. 1000',
+                              text: 'Rs. $amount',
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
                               color: greenColor)

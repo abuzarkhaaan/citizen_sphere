@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import '../../../view model/firebase_provider.dart';
 
 class MedicalRecords extends StatefulWidget {
   const MedicalRecords({super.key});
@@ -16,6 +19,7 @@ class MedicalRecords extends StatefulWidget {
 class _MedicalRecordsState extends State<MedicalRecords> {
   @override
   Widget build(BuildContext context) {
+    FirebaseProvider firebaseProvider =  Provider.of<FirebaseProvider>(context);
     return Column(
       children: [
         SizedBox(height: 37.h),
@@ -66,7 +70,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     fontSize: 14.sp,
                   ),
                   quickSandTitleText(
-                      text: 'USER', fontSize: 18.sp, color: lightGrayColor),
+                      text: firebaseProvider.firstName, fontSize: 18.sp, color: lightGrayColor),
                 ],
               ),
             ),
@@ -90,7 +94,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     fontSize: 14.sp,
                   ),
                   quickSandTitleText(
-                      text: 'AB+', fontSize: 18.sp, color: lightGrayColor),
+                      text: firebaseProvider.bloodGroup, fontSize: 18.sp, color: lightGrayColor),
                 ],
               ),
             ),
@@ -120,7 +124,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     fontSize: 14.sp,
                   ),
                   quickSandTitleText(
-                      text: '65 Kg', fontSize: 18.sp, color: lightGrayColor),
+                      text: "${firebaseProvider.weight} Kg", fontSize: 18.sp, color: lightGrayColor),
                 ],
               ),
             ),
@@ -144,7 +148,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     fontSize: 14.sp,
                   ),
                   quickSandTitleText(
-                      text: '5.7\'', fontSize: 18.sp, color: lightGrayColor),
+                      text: '${firebaseProvider.height}\'', fontSize: 18.sp, color: lightGrayColor),
                 ],
               ),
             ),
@@ -170,11 +174,11 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   quickSandTitleText(
-                    text: 'Agr',
+                    text: 'Age',
                     fontSize: 14.sp,
                   ),
                   quickSandTitleText(
-                      text: '22', fontSize: 18.sp, color: lightGrayColor),
+                      text: firebaseProvider.age, fontSize: 18.sp, color: lightGrayColor),
                 ],
               ),
             ),
@@ -198,7 +202,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     fontSize: 14.sp,
                   ),
                   quickSandTitleText(
-                      text: 'None', fontSize: 18.sp, color: lightGrayColor),
+                      text: firebaseProvider.disease, fontSize: 18.sp, color: lightGrayColor),
                 ],
               ),
             ),

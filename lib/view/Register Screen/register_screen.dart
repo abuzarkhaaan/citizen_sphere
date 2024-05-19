@@ -7,6 +7,7 @@ import 'package:citizen_sphere2/core/constants/colors.dart';
 import 'package:citizen_sphere2/core/constants/styles.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_green_button.dart';
 import 'package:citizen_sphere2/core/helper%20widgets/custom_textfield.dart';
+import 'package:citizen_sphere2/view%20model/sign_up_provider.dart';
 import 'package:citizen_sphere2/view/Register%20Screen/register_pt2_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -24,34 +26,34 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   // final PageController _pageController = PageController();
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  final mobileNoController = TextEditingController();
-  final cnicController = TextEditingController();
-  final cityController = TextEditingController();
-  final birthdayController = TextEditingController();
 
   // int _currentPageIndex = 0;
+  late SignUpProvider signUpProvider;
 
-  @override
-  void dispose() {
-    firstNameController.dispose();
-    lastNameController.dispose();
-    emailController.dispose();
-    mobileNoController.dispose();
-    cnicController.dispose();
-    cityController.dispose();
-    birthdayController.dispose();
 
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   firstNameController.dispose();
+  //   lastNameController.dispose();
+  //   emailController.dispose();
+  //   mobileNoController.dispose();
+  //   cnicController.dispose();
+  //   cityController.dispose();
+  //   birthdayController.dispose();
+  //
+  //   super.dispose();
+  // }
 
   /////CNIC Picker/////
-  File? cnicFront;
-  File? cnicBack;
+  // File? cnicFront;
+  // File? cnicBack;
+
+  @override
+  void initState() {
+    Provider.of<SignUpProvider>(context,listen: false).resetFields();
+    super.initState();
+  }
 
   Future<void> pickCnicFrontImage() async {
     debugPrint('Picking Cnic Image');
@@ -63,7 +65,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (image == null) {
       return;
     }
-    cnicFront = File(image.path);
+    signUpProvider.cnicFront = File(image.path);
+    signUpProvider.notifyListeners();
     setState(() {});
   }
 
@@ -77,7 +80,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (image == null) {
       return;
     }
-    cnicBack = File(image.path);
+    signUpProvider.cnicBack = File(image.path);
+    signUpProvider.notifyListeners();
     setState(() {});
   }
 
@@ -94,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        birthdayController.text =
+        signUpProvider.birthdayController.text =
             '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
         log(selectedDate.toString());
       });
@@ -103,6 +107,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    signUpProvider =  Provider.of<SignUpProvider>(context);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -214,7 +219,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         CustomTextField(
                           width: 167.w,
                           keyboardType: TextInputType.name,
-                          controller: firstNameController,
+                          controller: signUpProvider.firstNameController,
                           label: 'First Name',
                           isRequired: true,
                           isObscure: false,
@@ -222,7 +227,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         CustomTextField(
                           width: 167.w,
                           keyboardType: TextInputType.name,
-                          controller: lastNameController,
+                          controller: signUpProvider.lastNameController,
                           label: 'Last Name',
                           isRequired: true,
                           isObscure: false,
@@ -232,7 +237,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 23.h),
                     CustomTextField(
                       keyboardType: TextInputType.emailAddress,
-                      controller: emailController,
+                      controller: signUpProvider.emailController,
                       label: 'Email',
                       isRequired: true,
                       isObscure: false,
@@ -241,7 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 23.h),
                     CustomTextField(
                       keyboardType: TextInputType.name,
-                      controller: passwordController,
+                      controller: signUpProvider.passwordController,
                       label: 'Password',
                       isRequired: true,
                       isObscure: true,
@@ -251,7 +256,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 23.h),
                     CustomTextField(
                       keyboardType: TextInputType.number,
-                      controller: mobileNoController,
+                      controller: signUpProvider.mobileNoController,
                       label: 'Mobile No',
                       isRequired: true,
                       isObscure: false,
@@ -259,7 +264,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 23.h),
                     CustomTextField(
                       keyboardType: TextInputType.number,
-                      controller: cnicController,
+                      controller: signUpProvider.cnicController,
                       label: 'CNIC',
                       isRequired: true,
                       isObscure: false,
@@ -267,7 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 23.h),
                     CustomTextField(
                       keyboardType: TextInputType.name,
-                      controller: cityController,
+                      controller: signUpProvider.cityController,
                       label: 'City',
                       isRequired: false,
                       isObscure: false,
@@ -276,7 +281,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 23.h),
                     CustomTextField(
                       keyboardType: TextInputType.none,
-                      controller: birthdayController,
+                      controller: signUpProvider.birthdayController,
                       onTap: () {
                         _selectDate(context);
                       },
@@ -307,11 +312,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderRadius: BorderRadius.circular(15.sp),
                               border: Border.all(color: greenColor),
                             ),
-                            child: cnicFront != null
+                            child: signUpProvider.cnicFront != null
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(15.sp),
                                     child: Image.file(
-                                      cnicFront!,
+                                      signUpProvider.cnicFront!,
                                       fit: BoxFit.fill,
                                     ),
                                   )
@@ -332,11 +337,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderRadius: BorderRadius.circular(15.sp),
                               border: Border.all(color: greenColor),
                             ),
-                            child: cnicBack != null
+                            child: signUpProvider.cnicBack != null
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(15.sp),
                                     child: Image.file(
-                                      cnicBack!,
+                                      signUpProvider.cnicBack!,
                                       fit: BoxFit.fill,
                                     ),
                                   )

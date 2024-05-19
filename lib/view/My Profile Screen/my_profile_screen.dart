@@ -6,6 +6,7 @@ import 'package:citizen_sphere2/core/helper%20widgets/custom_green_button.dart';
 import 'package:citizen_sphere2/view%20model/My%20Profile%20View%20Model/my_profile_view_model.dart';
 import 'package:citizen_sphere2/view/Change%20Password%20Screen/change_password_screen.dart';
 import 'package:citizen_sphere2/view/Login%20Screen/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -194,9 +195,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.to(const LoginScreen());
+                                    GestureDetector (
+                                      onTap: () async {
+                                       await FirebaseAuth.instance.signOut();
+                                       Get.offAll(const LoginScreen());
                                       },
                                       child: const CustomGreenButton(
                                         label: 'Yes, Logout',
